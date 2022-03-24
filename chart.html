@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+
+
+a { outline:none }
+
+.cont  {margin-left:auto;margin-right:auto;width:730px;height:330px;overflow:visible;padding:0px; border:0px solid #6F96B4; position:relative}
+
+
+.chartz {float:left;width:calc(50% - 2px);height:100%;position:relative;cursor:crosshair;
+			background: url('img/bozzetti1.jpg') ;background-repeat: no-repeat;background-size: contain;
+	        background-color:white;
+            padding:0px;
+			border-radius:5px;border:1px dashed #1880AF;
+			margin-top:30px;
+		}
+		
+.cont #data {float:right;width:50%;height:100%;padding:30px;padding-top:18px;padding-bottom:23px;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+}
+
+
+
+td { vertical-align:top; padding: 5px}
+
+.cont #data form#fields input[type="text"] {width:250px}
+
+
+
+.bodychart-choice-container {
+
+	text-align:center;background-color:#DBE3E7;border-radius:5px;
+	margin-bottom:18px;
+	display:table;
+	margin:auto;
+	padding:3px 16px;
+
+}
+
+
+		
+.point {position:absolute; cursor:pointer;
+		
+		outline:none;
+		
+	
+	}
+	
+	
+.painBase {
+	border-radius: 50%;
+	behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+	width: 20px;
+	height: 20px;
+
+}
+
+.painTrans {
+	margin-top:-12px;
+	margin-left:-12px;
+
+
+}
+
+.moveBase {
+	border-radius: 50%;
+	behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+	width: 22px;
+	height: 22px;
+	background-image: url('img/up-arrow-button-bw.png');
+	background-position:center;
+	background-size: 100% 100%;
+	background-repeat:no-repeat;
+
+
+}
+
+.moveTrans {
+	margin-top:-13px;
+	margin-left:-13px;
+
+
+}
+
+
+
+.point_sel {
+	border: 2px solid #1880AF;
+	opacity:1;
+}
+
+.point_unsel {
+	border: 2px solid #b9b9b9;
+	opacity:0.93;
+}
+
+
+
+.painBase.point_sel {
+display: table;
+}
+
+.painBase.point_sel:after {
+//	background-color:green;
+	content:"\002B";
+//	content:"x";
+	color:white;
+    text-shadow: 0.07em 0 #333, 0 0.07em #333, -0.07em 0 #333, 0 -0.07em #333;
+
+//	font-size:15px;
+
+ display: block;
+	text-align:center;
+	line-height:20px;
+
+}
+
+
+
+.pain_1 {
+	background: #FCFF63;
+
+}
+
+
+
+.pain_2 {
+	background: #FFC900;
+
+}
+
+.pain_3 {
+	background: #FF7B00;
+
+}
+
+.pain_4 {
+	background: #FF0000;
+
+}
+
+.pain_flash {
+	background-image: url('img/electricity-bolt-icon.png');
+	background-position:center;
+	background-size: calc(100% + 4px) calc(100% + 4px);
+	background-repeat:no-repeat;
+
+}
+
+
+
+.move_up {
+	
+}
+
+.move_right {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.move_down {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+
+.move_left {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+
+
+
+.move_up_right {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.move_down_right {
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.move_down_left {
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    -o-transform: rotate(225deg);
+    transform: rotate(225deg);
+}
+
+
+
+.move_up_left {
+    -webkit-transform: rotate(315deg);
+    -moz-transform: rotate(315deg);
+    -ms-transform: rotate(315deg);
+    -o-transform: rotate(315deg);
+    transform: rotate(315deg);
+}
+
+
+
+
+input[type="radio"], input[type="checkbox"] {
+	outline:none;
+	cursor:pointer;
+}
+
+
+
+
+
+
+label.radioLabel {
+  margin:0;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1em;
+  width:auto;
+//  margin-left:4px;
+//  margin-right:4px;
+}
+label.radioLabel .overlay {
+  width: 18px;
+  height: 18px;
+//  margin-right: .1em;
+//  padding: .125em;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  border: 2px solid #b9b9b9;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin:0;
+
+}
+label.radioLabel input[type="radio"] {
+  display: none;
+}
+
+
+
+label.radioLabel input[type="radio"]:checked + span.overlay {
+
+ border: 2px solid #1880AF;
+	text-align:center;
+
+  width: 1.9em;
+  height: 1.9em;
+}
+
+
+
+
+label.radioLabel input[type="radio"]:checked + span.overlay:after {
+
+  line-height:1.9em;
+
+	text-align:center;
+	vertical-align:middle;
+	opacity:1;
+	color:white;
+    text-shadow: 0.07em 0 #333, 0 0.07em #333, -0.07em 0 #333, 0 -0.07em #333;
+}
+
+label.radioLabel input[type="radio"]:checked + span.overlay.pain_1:after {
+	content: '1';
+}
+
+label.radioLabel input[type="radio"]:checked + span.overlay.pain_2:after {
+	content: '2';
+}
+
+label.radioLabel input[type="radio"]:checked + span.overlay.pain_3:after {
+	content: '3';
+}
+
+label.radioLabel input[type="radio"]:checked + span.overlay.pain_4:after {
+	content: '4';
+}
+
+
+
+/*
+label.radioLabel .overlay.pain_1:after {
+	text-align:center;
+	vertical-align:middle;
+	line-height:1.8em;
+	
+	content: '+1';
+	opacity:1;
+
+}
+*/
+
+
+.ui-tooltip {display:table-cell;padding:4px; background:#333 !important; color:#fff; box-shadow:1px 1px 1px #999; font-size:10px}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="cont">
+				
+			<div id="chart-pain" class="chartz">
+			<div class="point painBase painTrans pain_1 ui-draggable-handle point_unsel" style="left: 64px; top: 27px;"></div><div class="point painBase painTrans ui-draggable-handle pain_3 point_unsel" style="left: 81px; top: 187px;"></div><div class="point painBase painTrans ui-draggable-handle pain_flash point_unsel" style="left: 234px; top: 96px;"></div><div class="point painBase painTrans ui-draggable-handle pain_4 point_unsel" style="left: 153px; top: 166px;"></div><div class="point painBase painTrans ui-draggable-handle pain_flash point_unsel" style="left: 188px; top: 165px;"></div><div class="point painBase painTrans ui-draggable-handle pain_3 point_unsel" style="left: 323px; top: 231px;"></div><div class="point painBase painTrans ui-draggable-handle pain_4 point_unsel" style="left: 294px; top: 45px;"></div><div class="point painBase painTrans ui-draggable-handle point_sel pain_2" style="left: 22px; top: 114px;"></div><span title="Elimina selezionato" class="mz_chart-close-btn ui-icon ui-icon-circle-close" style="position:absolute;cursor:pointer;top:10px;right:6px;font-size:16px;color:#800100"></span>
+			</div>
+
+</div>
+
+
+</body>
+</html>
